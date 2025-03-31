@@ -4,24 +4,24 @@ import jakarta.persistence.*;
 
 @Entity
 public class Course {
-
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Column(nullable = false)
     private String title;
-
-    @Column(nullable = false)
-    private double fee = 10000; // Default value in Java
-
-    @Column(nullable = false)
-    private int credits = 100; // Default value in Java
+    private Double fee;
+    private Integer credits;
 
     public Course() {
-        // No need to explicitly set values here because they are set in the fields
+        this.fee = 10000.0;
+        this.credits = 100; 
     }
 
+    public Course(int id, String title, Double fee, Integer credits) {
+        this.id = id;
+        this.title = title;
+        this.fee = fee != null ? fee : 10000.0;
+        this.credits = credits != null ? credits : 100;
+    }
     public int getId() {
         return id;
     }
